@@ -14,7 +14,7 @@ def run_markdown_ingestion_pipeline(source):
     docs=markdown_loader(source_path)
     logger.info(f"Loaded {len(docs)} documents from {source_path}")
     #remove table of contents
-    docs=remove_table_of_contents(docs)
+    docs=remove_table_of_contents(docs) 
     logger.info(f"Chunking documents from {source_path}")
     chunks=recursive_markdown_chunker(docs)
     logger.info(f"Generated {len(chunks)} chunks from {source_path}")
