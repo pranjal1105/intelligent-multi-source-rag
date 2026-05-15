@@ -64,3 +64,22 @@ def debug_retrieval(vectorstore, query):
     except Exception as e:
         logger.exception("Failed to debug retrieval")
         raise e
+    
+def save_vectorstore(vectorstore, file_path):
+    try:
+        logger.info(f"Saving vector db to {file_path}")
+        vectorstore.save_local(file_path)
+        logger.info("Vector db saved successfully")
+    except Exception as e:
+        logger.exception("Failed to save vector db")
+        raise e
+    
+def load_vectorstore(file_path):
+    try:
+        logger.info(f"Loading vector db from {file_path}")
+        vectorstore = FAISS.load_local(file_path, load_embedding_model(),allow_dangerous_deserialization=True)
+        logger.info("Vector db loaded successfully")
+        return vectorstore
+    except Exception as e:
+        logger.exception("Failed to load vector db")
+        raise e
